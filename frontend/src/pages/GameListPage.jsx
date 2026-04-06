@@ -50,7 +50,15 @@ export default function GameListPage() {
 
   return (
     <div style={{ minHeight: '100vh', background: '#0D0D0D' }}>
-      <div className="max-w-7xl mx-auto px-6 pt-28 pb-16">
+      <div
+        style={{
+          maxWidth: '1280px',
+          margin: '0 auto',
+          padding: '0 24px',
+          paddingTop: '120px',
+          paddingBottom: '64px',
+        }}
+      >
         <HeroSection searchQuery={searchQuery} />
         <FilterBar
           genre={genre}
@@ -72,14 +80,32 @@ export default function GameListPage() {
               transition={{ duration: 0.3 }}
             >
               {filtered.length === 0 ? (
-                <div style={{ textAlign: 'center', padding: '4rem', color: 'rgba(255,255,255,0.3)' }}>
-                  <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: '1.2rem', marginBottom: '8px' }}>
+                <div
+                  style={{
+                    textAlign: 'center',
+                    padding: '4rem',
+                    color: 'rgba(255,255,255,0.3)',
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: 'Space Grotesk, sans-serif',
+                      fontSize: '1.2rem',
+                      marginBottom: '8px',
+                    }}
+                  >
                     No artifacts found.
                   </p>
                   <p style={{ fontSize: '0.85rem' }}>Try adjusting your filters.</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+                    gap: '20px',
+                  }}
+                >
                   {filtered.map((game, i) => (
                     <motion.div
                       key={game.id}
@@ -103,17 +129,23 @@ export default function GameListPage() {
 
 function HeroSection({ searchQuery }) {
   return (
-    <div style={{ marginBottom: '3.5rem' }}>
+    <div style={{ marginBottom: '3rem' }}>
       {searchQuery ? (
         <div>
-          <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem', marginBottom: '8px' }}>
+          <p
+            style={{
+              color: 'rgba(255,255,255,0.4)',
+              fontSize: '0.85rem',
+              marginBottom: '8px',
+            }}
+          >
             Search results for
           </p>
           <h1
             style={{
               fontFamily: 'Space Grotesk, sans-serif',
               fontWeight: 800,
-              fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
               lineHeight: 1.1,
               color: '#fff',
             }}
@@ -127,11 +159,11 @@ function HeroSection({ searchQuery }) {
             style={{
               fontFamily: 'Space Grotesk, sans-serif',
               fontWeight: 800,
-              fontSize: 'clamp(3rem, 7vw, 5rem)',
+              fontSize: 'clamp(2.8rem, 6vw, 4.5rem)',
               lineHeight: 1.05,
               letterSpacing: '-0.03em',
               color: '#fff',
-              marginBottom: '0.2rem',
+              marginBottom: '0',
             }}
           >
             The Kinetic
@@ -140,12 +172,12 @@ function HeroSection({ searchQuery }) {
             style={{
               fontFamily: 'Space Grotesk, sans-serif',
               fontWeight: 800,
-              fontSize: 'clamp(3rem, 7vw, 5rem)',
+              fontSize: 'clamp(2.8rem, 6vw, 4.5rem)',
               lineHeight: 1.05,
               letterSpacing: '-0.03em',
               color: '#D67BFF',
               fontStyle: 'italic',
-              marginBottom: '1.2rem',
+              marginBottom: '1rem',
             }}
           >
             Archive.
@@ -180,11 +212,10 @@ function UncoverCard({ remaining }) {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        aspectRatio: '16/10',
+        minHeight: '200px',
         cursor: 'pointer',
         transition: 'border-color 0.2s',
       }}
-      whileHover={{ borderColor: 'rgba(214,123,255,0.3)' }}
     >
       <div
         style={{
@@ -198,7 +229,6 @@ function UncoverCard({ remaining }) {
           fontSize: '1.5rem',
           color: 'rgba(255,255,255,0.4)',
           marginBottom: '12px',
-          transition: 'all 0.2s',
         }}
       >
         +

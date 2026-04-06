@@ -335,5 +335,497 @@
       "pros": ["Extraordinary environmental storytelling", "Tight and respectful survival loop", "Stunning visual reclamation of urban spaces"],
       "cons": ["Undercooked crafting system", "Aggressive hunger mechanic disrupts pacing"]
     }
+  },
+  {
+    "id": "9",
+    "title": "Axiom Break",
+    "genre": "Action RPG",
+    "description": "A hyper-stylized action RPG where every attack rewrites the rules of physics. Chain impossible combos to reshape the battlefield in real time.",
+    "thumbnail": "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1563207153-f403bf289096?w=1400&q=80",
+    "rating": 8.9,
+    "developer": "Fracture Labs",
+    "publisher": "Prism Interactive",
+    "playtime": "48h Average",
+    "releaseDate": "2024-04-01",
+    "featured": true,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "ComboKing99",
+        "level": "Elite Player",
+        "rating": 5,
+        "content": "The combat system is unlike anything I have ever played. Every ability modifier stacks in ways that feel broken but are completely intentional. Pure adrenaline from start to finish.",
+        "helpful": 77,
+        "date": "2024-04-05"
+      },
+      {
+        "id": "r2",
+        "username": "SlowBurn",
+        "level": "Story Seeker",
+        "rating": 4,
+        "content": "The story takes a while to find its footing but when it clicks, it really clicks. The final chapter is one of the best I have played in the genre.",
+        "helpful": 34,
+        "date": "2024-04-03"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Highly Positive",
+      "sentimentScore": 86,
+      "finalScore": 8.9,
+      "pros": ["Unprecedented physics-based combat", "Exceptional late-game narrative payoff", "Incredibly high skill ceiling"],
+      "cons": ["Story slow to start", "Difficulty spikes mid-game without warning"]
+    }
+  },
+  {
+    "id": "10",
+    "title": "Hollow Signal",
+    "genre": "Horror",
+    "description": "Deep in an abandoned research station, something is broadcasting. To survive, you must listen — but listening changes you.",
+    "thumbnail": "https://images.unsplash.com/photo-1509515837298-2c67a3933321?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1542396601-dca920ea2807?w=1400&q=80",
+    "rating": 8.7,
+    "developer": "Static Noir",
+    "publisher": "Dread Frequency",
+    "playtime": "18h Average",
+    "releaseDate": "2023-10-31",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "NightCrawler",
+        "level": "Horror Expert",
+        "rating": 5,
+        "content": "Genuinely the most frightening game I have played in a decade. The audio design alone will destroy you. Play with headphones in a dark room if you value your sanity.",
+        "helpful": 98,
+        "date": "2023-11-03"
+      },
+      {
+        "id": "r2",
+        "username": "CasualScream",
+        "level": "New Contributor",
+        "rating": 4,
+        "content": "Terrifying in the best way. The mystery unravels beautifully. My only issue is the last 20 minutes feels rushed compared to the slow burn buildup.",
+        "helpful": 41,
+        "date": "2023-11-05"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Highly Positive",
+      "sentimentScore": 85,
+      "finalScore": 8.7,
+      "pros": ["Decade-best audio horror design", "Masterfully paced mystery unravel", "Genuinely disturbing atmosphere"],
+      "cons": ["Rushed final act", "Short playtime for the price point"]
+    }
+  },
+  {
+    "id": "11",
+    "title": "Iron Dominion",
+    "genre": "Strategy",
+    "description": "Build an empire from the ashes of a collapsed federation. Every diplomatic choice, every resource deployment, shapes the fate of millions.",
+    "thumbnail": "https://images.unsplash.com/photo-1563019597-5a33410412d1?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1598300056393-4aac492f4344?w=1400&q=80",
+    "rating": 7.8,
+    "developer": "Forge & Anvil",
+    "publisher": "Conquest Press",
+    "playtime": "90h Average",
+    "releaseDate": "2023-09-20",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "GrandMarshal",
+        "level": "Strategy Veteran",
+        "rating": 4,
+        "content": "The economic simulation is the most detailed I have encountered in this genre. Managing trade routes while conducting wars on three fronts is genuinely exhilarating.",
+        "helpful": 52,
+        "date": "2023-09-28"
+      },
+      {
+        "id": "r2",
+        "username": "PeaceKeeper",
+        "level": "Contributor",
+        "rating": 3,
+        "content": "Strong foundation let down by AI that collapses in the late game. After hour 60 the challenge evaporates completely.",
+        "helpful": 31,
+        "date": "2023-10-02"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Mixed Positive",
+      "sentimentScore": 68,
+      "finalScore": 7.8,
+      "pros": ["Exceptional economic simulation depth", "Thrilling multi-front conflict management", "Rich faction lore"],
+      "cons": ["Late-game AI difficulty collapse", "UI becomes overwhelming at empire scale"]
+    }
+  },
+  {
+    "id": "12",
+    "title": "Drift Protocol",
+    "genre": "Racing",
+    "description": "Street racing evolved. Drift Protocol combines underground culture, vehicular physics, and a neon-soaked open world into one relentless package.",
+    "thumbnail": "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1400&q=80",
+    "rating": 8.1,
+    "developer": "Tarmac Dreams",
+    "publisher": "Burnout Records",
+    "playtime": "30h Average",
+    "releaseDate": "2024-02-02",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "StreetKing",
+        "level": "Drift Specialist",
+        "rating": 4,
+        "content": "The drift mechanics are butter smooth. Threading through traffic at 200kph with the perfect angle locked in is genuinely euphoric. The music selection is also impeccable.",
+        "helpful": 67,
+        "date": "2024-02-08"
+      },
+      {
+        "id": "r2",
+        "username": "RealistRacer",
+        "level": "Simulation Fan",
+        "rating": 4,
+        "content": "Not a sim but does not try to be one. As an arcade racer it is near-perfect. World feels alive and the day-night cycle affects traffic and handling in subtle ways.",
+        "helpful": 29,
+        "date": "2024-02-06"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Positive",
+      "sentimentScore": 74,
+      "finalScore": 8.1,
+      "pros": ["Euphoric drift mechanics", "Impeccable music and world atmosphere", "Dynamic day-night traffic system"],
+      "cons": ["Campaign story feels thin", "Repetitive late-game event structure"]
+    }
+  },
+  {
+    "id": "13",
+    "title": "Solace Protocol",
+    "genre": "RPG",
+    "description": "A narrative RPG set aboard a generation ship at the edge of known space. Every conversation, every choice, echoes across the entire voyage.",
+    "thumbnail": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1400&q=80",
+    "rating": 9.1,
+    "developer": "Long Haul Studios",
+    "publisher": "Horizon Collective",
+    "playtime": "65h Average",
+    "releaseDate": "2024-01-18",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "VoyageWriter",
+        "level": "Narrative Expert",
+        "rating": 5,
+        "content": "The best writing in games this decade. Every crew member feels like a real person with genuine history and contradictions. I cried twice and I am not embarrassed to admit it.",
+        "helpful": 134,
+        "date": "2024-01-25"
+      },
+      {
+        "id": "r2",
+        "username": "SystemsPlayer",
+        "level": "RPG Veteran",
+        "rating": 4,
+        "content": "Narratively superb but the combat is merely serviceable. If you come for the story you will be rewarded beyond measure. If you want mechanical depth, look elsewhere.",
+        "helpful": 56,
+        "date": "2024-01-22"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Highly Positive",
+      "sentimentScore": 91,
+      "finalScore": 9.1,
+      "pros": ["Best-in-decade narrative writing", "Deeply human and contradictory NPC design", "Choices with genuine long-term consequences"],
+      "cons": ["Combat system merely serviceable", "Slow opening three hours before it finds rhythm"]
+    }
+  },
+  {
+    "id": "14",
+    "title": "Zero Threshold",
+    "genre": "Shooter",
+    "description": "A single-player tactical shooter where you have one life. One mission. No checkpoints. Every route through the facility is different each run.",
+    "thumbnail": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1400&q=80",
+    "rating": 8.6,
+    "developer": "Breach Point",
+    "publisher": "Singular Games",
+    "playtime": "22h Average",
+    "releaseDate": "2024-03-10",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "OperatorOne",
+        "level": "Tactical Elite",
+        "rating": 5,
+        "content": "Permadeath done right. The procedural layout keeps every run fresh and the enemy AI actually adapts to your patterns over repeated attempts. Sweat-inducing in the best way.",
+        "helpful": 83,
+        "date": "2024-03-15"
+      },
+      {
+        "id": "r2",
+        "username": "CasualCommando",
+        "level": "Beginner",
+        "rating": 3,
+        "content": "Brutally difficult and unforgiving of mistakes. If that is your thing this is a masterclass. For me personally the stress outweighed the satisfaction.",
+        "helpful": 27,
+        "date": "2024-03-12"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Positive",
+      "sentimentScore": 79,
+      "finalScore": 8.6,
+      "pros": ["Permadeath with genuine tension", "Adaptive AI that learns your playstyle", "Every run meaningfully different"],
+      "cons": ["Difficulty may exclude casual players", "Narrative is minimal by design"]
+    }
+  },
+  {
+    "id": "15",
+    "title": "Mycelium",
+    "genre": "Puzzle",
+    "description": "Grow. Connect. Consume. A slow and meditative puzzle game about the secret intelligence of fungal networks and what they remember.",
+    "thumbnail": "https://images.unsplash.com/photo-1473492201326-7ebe8f7bba7b?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=1400&q=80",
+    "rating": 7.4,
+    "developer": "Root System",
+    "publisher": "Spore Press",
+    "playtime": "12h Average",
+    "releaseDate": "2023-08-14",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "ZenMaster",
+        "level": "Ambient Gamer",
+        "rating": 4,
+        "content": "Deeply meditative. The soundtrack pairs with the visuals to create something genuinely unique. Not a game in any traditional sense — more of an interactive experience.",
+        "helpful": 39,
+        "date": "2023-08-20"
+      },
+      {
+        "id": "r2",
+        "username": "PuzzlePurist",
+        "level": "Logic Fan",
+        "rating": 3,
+        "content": "Beautiful but the puzzle complexity never truly escalates. If you want challenge this is not it. If you want a gorgeous experience, it delivers.",
+        "helpful": 21,
+        "date": "2023-08-18"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Mixed Positive",
+      "sentimentScore": 61,
+      "finalScore": 7.4,
+      "pros": ["Genuinely unique visual-audio pairing", "Meditative and restorative experience", "Beautifully realized biological aesthetic"],
+      "cons": ["Puzzle complexity plateau mid-game", "Short playtime relative to price"]
+    }
+  },
+  {
+    "id": "16",
+    "title": "Warped Meridian",
+    "genre": "Action RPG",
+    "description": "Time is a weapon. A dimension-hopping action RPG where you battle across six overlapping timelines simultaneously, each decision tearing new fractures in reality.",
+    "thumbnail": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?w=1400&q=80",
+    "rating": 9.0,
+    "developer": "Rift Engine",
+    "publisher": "Temporal Arc",
+    "playtime": "60h Average",
+    "releaseDate": "2024-02-20",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "ChronoCritic",
+        "level": "Elite Reviewer",
+        "rating": 5,
+        "content": "Managing six simultaneous timelines sounds overwhelming and it absolutely is — in a way that somehow becomes exhilarating rather than exhausting. Incredible game design.",
+        "helpful": 104,
+        "date": "2024-02-26"
+      },
+      {
+        "id": "r2",
+        "username": "LinearGamer",
+        "level": "Contributor",
+        "rating": 4,
+        "content": "The complexity is real but the game teaches it masterfully. By the midpoint I felt genuinely powerful in a way very few games achieve.",
+        "helpful": 49,
+        "date": "2024-02-24"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Highly Positive",
+      "sentimentScore": 89,
+      "finalScore": 9.0,
+      "pros": ["Multi-timeline mechanic executed flawlessly", "Masterful complexity onboarding", "Late-game power fantasy unmatched in genre"],
+      "cons": ["First two hours demand patience", "Some players may find the concept inaccessible"]
+    }
+  },
+  {
+    "id": "17",
+    "title": "Blacksite: Eden",
+    "genre": "Horror",
+    "description": "A classified government facility. A quarantine nobody explained. And something in the vents that knows your name.",
+    "thumbnail": "https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1400&q=80",
+    "rating": 7.3,
+    "developer": "Classified Dev",
+    "publisher": "Black Folder",
+    "playtime": "14h Average",
+    "releaseDate": "2023-10-15",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "HorrorHound",
+        "level": "Genre Veteran",
+        "rating": 4,
+        "content": "Effective and atmospheric. The monster design is nightmare fuel and the environmental storytelling fills gaps in the narrative brilliantly. Some cheap jump scares drag it down.",
+        "helpful": 45,
+        "date": "2023-10-20"
+      },
+      {
+        "id": "r2",
+        "username": "SkepticalReviewer",
+        "level": "Critic",
+        "rating": 3,
+        "content": "The first half is genuinely terrifying but the second half devolves into action sequences that undermine the tension. Uneven but worth it for the opening hours.",
+        "helpful": 33,
+        "date": "2023-10-18"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Mixed Positive",
+      "sentimentScore": 58,
+      "finalScore": 7.3,
+      "pros": ["Nightmare-level monster design", "Exceptional first-half atmospheric tension", "Environmental storytelling fills lore gaps well"],
+      "cons": ["Second half shifts tone into action", "Cheap jump scares undermine earned dread"]
+    }
+  },
+  {
+    "id": "18",
+    "title": "Gridlock City",
+    "genre": "Simulation",
+    "description": "Design, build, and survive the city of the future. Manage power grids, population psychology, and infrastructure decay in real time.",
+    "thumbnail": "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1400&q=80",
+    "rating": 8.0,
+    "developer": "Blueprint Co.",
+    "publisher": "Civic Engine",
+    "playtime": "100h Average",
+    "releaseDate": "2023-12-01",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "UrbanPlanner",
+        "level": "City Builder Expert",
+        "rating": 4,
+        "content": "The most realistic traffic simulation I have seen in any city builder. The psychology system for population happiness is also refreshingly honest about trade-offs.",
+        "helpful": 71,
+        "date": "2023-12-07"
+      },
+      {
+        "id": "r2",
+        "username": "CasualBuilder",
+        "level": "Hobbyist",
+        "rating": 4,
+        "content": "Overwhelming at first but incredibly deep once the systems click. The infrastructure decay mechanic adds a layer of ongoing challenge that keeps runs from going stale.",
+        "helpful": 38,
+        "date": "2023-12-05"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Positive",
+      "sentimentScore": 75,
+      "finalScore": 8.0,
+      "pros": ["Best-in-class traffic simulation", "Honest population psychology trade-offs", "Infrastructure decay creates lasting challenge"],
+      "cons": ["Steep initial learning curve", "UI density intimidates new players"]
+    }
+  },
+  {
+    "id": "19",
+    "title": "Fractured Isles",
+    "genre": "Survival",
+    "description": "An archipelago shattered by a seismic event. You wash ashore on an island that keeps changing. Build fast. Nothing lasts.",
+    "thumbnail": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1400&q=80",
+    "rating": 7.7,
+    "developer": "Driftwood Studios",
+    "publisher": "Coastal Arc",
+    "playtime": "50h Average",
+    "releaseDate": "2024-01-05",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "IslandRunner",
+        "level": "Survival Specialist",
+        "rating": 4,
+        "content": "The shifting island mechanic keeps every session tense. You never get comfortable which is exactly the point. Crafting system is well balanced and resource gathering feels rewarding.",
+        "helpful": 53,
+        "date": "2024-01-12"
+      },
+      {
+        "id": "r2",
+        "username": "BaseBuilder",
+        "level": "Veteran",
+        "rating": 3,
+        "content": "Frustrating when your carefully built base is destroyed by a seismic event that gave 10 seconds warning. The randomness can feel punishing rather than fair.",
+        "helpful": 26,
+        "date": "2024-01-10"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Mixed Positive",
+      "sentimentScore": 64,
+      "finalScore": 7.7,
+      "pros": ["Dynamic island shift mechanic creates tension", "Well balanced crafting and resource loop", "Beautiful coastal environment art"],
+      "cons": ["Seismic events can feel arbitrarily punishing", "Base building investment feels risky to the point of discouragement"]
+    }
+  },
+  {
+    "id": "20",
+    "title": "Chrome Remnant",
+    "genre": "Action RPG",
+    "description": "Post-collapse. You are the only functional synthetic in a city of broken machines and desperate humans. Choose your allegiances carefully.",
+    "thumbnail": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=1400&q=80",
+    "rating": 8.4,
+    "developer": "Sigma Frame",
+    "publisher": "Reboot Interactive",
+    "playtime": "52h Average",
+    "releaseDate": "2024-03-22",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "SyntheticSoul",
+        "level": "Lore Diver",
+        "rating": 4,
+        "content": "The moral weight of every decision is immense. Being the only functional synthetic forces you to confront questions about identity and loyalty that the narrative earns rather than lectures.",
+        "helpful": 88,
+        "date": "2024-03-28"
+      },
+      {
+        "id": "r2",
+        "username": "ActionFirst",
+        "level": "Casual Reviewer",
+        "rating": 4,
+        "content": "Combat is snappy and the upgrade tree gives you a lot of room to specialize. The world is dense with optional content that rewards exploration without padding the experience.",
+        "helpful": 42,
+        "date": "2024-03-25"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Positive",
+      "sentimentScore": 82,
+      "finalScore": 8.4,
+      "pros": ["Morally weighty faction decision design", "Snappy combat with deep specialization tree", "Dense world rewards exploration"],
+      "cons": ["Opening act slightly derivative of genre tropes", "Minor performance issues in dense urban zones"]
+    }
   }
 ]

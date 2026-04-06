@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom'
-
 export default function Footer() {
   return (
     <footer
@@ -10,8 +8,21 @@ export default function Footer() {
         marginTop: '4rem',
       }}
     >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div
+        style={{
+          maxWidth: '1280px',
+          margin: '0 auto',
+          padding: '0 24px',
+        }}
+      >
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '32px',
+            marginBottom: '2rem',
+          }}
+        >
           <div>
             <h3
               style={{
@@ -24,7 +35,14 @@ export default function Footer() {
             >
               QuestLog
             </h3>
-            <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.8rem', lineHeight: 1.6, maxWidth: '240px' }}>
+            <p
+              style={{
+                color: 'rgba(255,255,255,0.45)',
+                fontSize: '0.8rem',
+                lineHeight: 1.6,
+                maxWidth: '240px',
+              }}
+            >
               The Kinetic Archive is a curated platform dedicated to the preservation and critique of interactive media.
             </p>
           </div>
@@ -42,7 +60,7 @@ export default function Footer() {
             >
               Navigation
             </p>
-            <div className="flex flex-col gap-2">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {['About', 'Privacy', 'Terms', 'Contact'].map(item => (
                 <a
                   key={item}
@@ -62,7 +80,14 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex md:justify-end items-start gap-3">
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              alignItems: 'flex-start',
+              gap: '10px',
+            }}
+          >
             {['RSS', 'Share', 'Archive'].map(label => (
               <button
                 key={label}
@@ -75,6 +100,7 @@ export default function Footer() {
                   color: 'rgba(255,255,255,0.4)',
                   fontSize: '0.65rem',
                   transition: 'all 0.2s',
+                  cursor: 'pointer',
                 }}
                 onMouseEnter={e => {
                   e.currentTarget.style.background = 'rgba(214,123,255,0.12)'

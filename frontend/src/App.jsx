@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast'
 import { AppProvider } from './context/AppContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import AuthModal from './components/AuthModal'
 import GameListPage from './pages/GameListPage'
 import GameDetailPage from './pages/GameDetailPage'
 
@@ -11,6 +12,7 @@ export default function App() {
     <AppProvider>
       <BrowserRouter>
         <Navbar />
+        <AuthModal />
         <main>
           <Routes>
             <Route path="/" element={<GameListPage />} />

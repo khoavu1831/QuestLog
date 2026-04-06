@@ -110,3 +110,9 @@ input, textarea {
 button {
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .detail-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

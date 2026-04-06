@@ -53,6 +53,7 @@ export default function GameDetailPage() {
             color: '#D67BFF',
             fontSize: '0.875rem',
             fontWeight: 600,
+            cursor: 'pointer',
           }}
         >
           Return to Archive
@@ -74,14 +75,29 @@ export default function GameDetailPage() {
     <div style={{ minHeight: '100vh', background: '#0D0D0D' }}>
       <BannerSection game={game} averageRating={averageRating} navigate={navigate} />
 
-      <div className="max-w-7xl mx-auto px-6 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
-          <div className="lg:col-span-1 flex flex-col gap-5">
+      <div
+        style={{
+          maxWidth: '1280px',
+          margin: '0 auto',
+          padding: '0 24px',
+          paddingTop: '32px',
+          paddingBottom: '64px',
+        }}
+      >
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 2fr',
+            gap: '24px',
+          }}
+          className="detail-grid"
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <AISummary aiSummary={game.aiSummary} />
             <DevStats game={game} />
           </div>
 
-          <div className="lg:col-span-2 flex flex-col gap-6">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <ReviewForm gameId={game.id} />
             <CommentList reviews={game.reviews} gameId={game.id} />
           </div>
@@ -97,7 +113,7 @@ function BannerSection({ game, averageRating, navigate }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      style={{ position: 'relative', minHeight: '420px', overflow: 'hidden' }}
+      style={{ position: 'relative', minHeight: '440px', overflow: 'hidden' }}
     >
       <div
         style={{
@@ -106,7 +122,7 @@ function BannerSection({ game, averageRating, navigate }) {
           backgroundImage: `url(${game.banner})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          filter: 'blur(2px) brightness(0.35)',
+          filter: 'blur(2px) brightness(0.3)',
           transform: 'scale(1.05)',
         }}
       />
@@ -115,24 +131,35 @@ function BannerSection({ game, averageRating, navigate }) {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to right, rgba(13,13,13,0.9) 40%, rgba(13,13,13,0.3) 100%), linear-gradient(to top, rgba(13,13,13,1) 0%, transparent 50%)',
+          background:
+            'linear-gradient(to right, rgba(13,13,13,0.92) 40%, rgba(13,13,13,0.25) 100%), linear-gradient(to top, rgba(13,13,13,1) 0%, transparent 55%)',
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 relative" style={{ paddingTop: '8rem', paddingBottom: '3rem' }}>
+      <div
+        style={{
+          maxWidth: '1280px',
+          margin: '0 auto',
+          padding: '0 24px',
+          paddingTop: '110px',
+          paddingBottom: '40px',
+          position: 'relative',
+        }}
+      >
         <button
           onClick={() => navigate(-1)}
           style={{
             display: 'inline-block',
-            marginBottom: '1.5rem',
-            fontSize: '0.75rem',
-            letterSpacing: '0.08em',
+            marginBottom: '1.25rem',
+            fontSize: '0.72rem',
+            letterSpacing: '0.1em',
             color: 'rgba(255,255,255,0.4)',
             background: 'none',
             border: 'none',
             padding: 0,
             cursor: 'pointer',
             textTransform: 'uppercase',
+            fontFamily: 'Inter, sans-serif',
             transition: 'color 0.2s',
           }}
           onMouseEnter={e => e.target.style.color = '#D67BFF'}
@@ -141,7 +168,15 @@ function BannerSection({ game, averageRating, navigate }) {
           Back to Archive
         </button>
 
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '2rem', flexWrap: 'wrap' }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'space-between',
+            gap: '2rem',
+            flexWrap: 'wrap',
+          }}
+        >
           <div>
             <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', flexWrap: 'wrap' }}>
               <GenreBadge>{game.genre}</GenreBadge>
@@ -155,13 +190,13 @@ function BannerSection({ game, averageRating, navigate }) {
               style={{
                 fontFamily: 'Space Grotesk, sans-serif',
                 fontWeight: 800,
-                fontSize: 'clamp(2.2rem, 5vw, 4rem)',
+                fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
                 lineHeight: 1.05,
                 letterSpacing: '-0.02em',
                 color: '#fff',
                 textTransform: 'uppercase',
                 marginBottom: '1rem',
-                maxWidth: '600px',
+                maxWidth: '580px',
               }}
             >
               {game.title}
@@ -169,10 +204,10 @@ function BannerSection({ game, averageRating, navigate }) {
 
             <p
               style={{
-                color: 'rgba(255,255,255,0.55)',
+                color: 'rgba(255,255,255,0.5)',
                 fontSize: '0.9rem',
                 lineHeight: 1.65,
-                maxWidth: '480px',
+                maxWidth: '460px',
               }}
             >
               {game.description}
@@ -208,24 +243,12 @@ function GenreBadge({ children, secondary }) {
 
 function ScoreRing({ score }) {
   const circumference = 2 * Math.PI * 38
-  const progress = (score / 10) * circumference
+  const progress = (parseFloat(score) / 10) * circumference
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        width: '110px',
-        height: '110px',
-        flexShrink: 0,
-      }}
-    >
+    <div style={{ position: 'relative', width: '110px', height: '110px', flexShrink: 0 }}>
       <svg width="110" height="110" viewBox="0 0 88 88" style={{ transform: 'rotate(-90deg)' }}>
-        <circle
-          cx="44" cy="44" r="38"
-          fill="none"
-          stroke="rgba(255,255,255,0.06)"
-          strokeWidth="3"
-        />
+        <circle cx="44" cy="44" r="38" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="3" />
         <circle
           cx="44" cy="44" r="38"
           fill="none"
@@ -257,7 +280,15 @@ function ScoreRing({ score }) {
         >
           {score}
         </p>
-        <p style={{ fontSize: '0.55rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginTop: '2px' }}>
+        <p
+          style={{
+            fontSize: '0.55rem',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: 'rgba(255,255,255,0.35)',
+            marginTop: '2px',
+          }}
+        >
           Quest Score
         </p>
       </div>
@@ -277,10 +308,25 @@ function DevStats({ game }) {
           padding: '14px',
         }}
       >
-        <p style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '6px' }}>
+        <p
+          style={{
+            fontSize: '0.65rem',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            color: 'rgba(255,255,255,0.35)',
+            marginBottom: '6px',
+          }}
+        >
           Developer
         </p>
-        <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600, fontSize: '0.9rem', color: '#fff' }}>
+        <p
+          style={{
+            fontFamily: 'Space Grotesk, sans-serif',
+            fontWeight: 600,
+            fontSize: '0.9rem',
+            color: '#fff',
+          }}
+        >
           {game.developer}
         </p>
       </div>
@@ -293,10 +339,25 @@ function DevStats({ game }) {
           padding: '14px',
         }}
       >
-        <p style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '6px' }}>
+        <p
+          style={{
+            fontSize: '0.65rem',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            color: 'rgba(255,255,255,0.35)',
+            marginBottom: '6px',
+          }}
+        >
           Playtime
         </p>
-        <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600, fontSize: '0.9rem', color: '#fff' }}>
+        <p
+          style={{
+            fontFamily: 'Space Grotesk, sans-serif',
+            fontWeight: 600,
+            fontSize: '0.9rem',
+            color: '#fff',
+          }}
+        >
           {game.playtime}
         </p>
       </div>
@@ -307,14 +368,14 @@ function DevStats({ game }) {
 function DetailSkeleton() {
   return (
     <div style={{ minHeight: '100vh', background: '#0D0D0D' }}>
-      <div className="skeleton" style={{ height: '420px', width: '100%' }} />
-      <div className="max-w-7xl mx-auto px-6 mt-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="flex flex-col gap-5">
+      <div className="skeleton" style={{ height: '440px', width: '100%' }} />
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '32px 24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div className="skeleton" style={{ height: '300px', borderRadius: '1rem' }} />
             <div className="skeleton" style={{ height: '100px', borderRadius: '1rem' }} />
           </div>
-          <div className="lg:col-span-2 flex flex-col gap-5">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div className="skeleton" style={{ height: '260px', borderRadius: '1rem' }} />
             <div className="skeleton" style={{ height: '180px', borderRadius: '1rem' }} />
           </div>
