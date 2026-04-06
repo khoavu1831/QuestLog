@@ -1,0 +1,339 @@
+[
+  {
+    "id": "1",
+    "title": "Neon Pulse: Retribution",
+    "genre": "Action RPG",
+    "description": "Navigate the crumbling foundations of a post-digital Tokyo. A cinematic masterpiece that redefines the boundaries of interactive media.",
+    "thumbnail": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1400&q=80",
+    "rating": 9.4,
+    "developer": "Kinetic Studios",
+    "publisher": "Nova Interactive",
+    "playtime": "55h Average",
+    "releaseDate": "2024-03-15",
+    "featured": true,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "Arch_Kinetic",
+        "level": "Level 42 Contributor",
+        "rating": 5,
+        "content": "The visual fidelity is absolutely staggering. I spent the first three hours just walking around the High-Spire district watching the volumetric lighting effects interact with the smog. The branching paths feel meaningful—not just binary choices but complex ripples.",
+        "helpful": 101,
+        "date": "2024-03-20"
+      },
+      {
+        "id": "r2",
+        "username": "Neon_Wanderer",
+        "level": "Master Reviewer",
+        "rating": 4,
+        "content": "A masterpiece of atmosphere, though the menu UI feels a bit cluttered on smaller displays. The combat is fluid, and the Sync-Link mechanic adds a layer of strategy I haven't seen in years. Definitely lives up to the hype.",
+        "helpful": 48,
+        "date": "2024-03-18"
+      },
+      {
+        "id": "r3",
+        "username": "PixelVault",
+        "level": "Veteran",
+        "rating": 5,
+        "content": "Groundbreaking. The narrative weaves through multiple timelines seamlessly and the soundtrack is generational. A must-play for anyone serious about games as art.",
+        "helpful": 75,
+        "date": "2024-03-22"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Highly Positive",
+      "sentimentScore": 92,
+      "finalScore": 9.4,
+      "pros": ["Unmatched world density and verticality", "Revolutionary branching memory-folding system", "Generational soundtrack and sound design"],
+      "cons": ["High hardware requirements for ultra-fidelity", "Menu UI cluttered on smaller displays"]
+    }
+  },
+  {
+    "id": "2",
+    "title": "Celestial Decree",
+    "genre": "Strategy",
+    "description": "Command fleets across the outer rim of a dying galaxy. Every decision reshapes the star map in this deeply complex grand strategy experience.",
+    "thumbnail": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1400&q=80",
+    "rating": 8.5,
+    "developer": "Orbital Forge",
+    "publisher": "Stellar Press",
+    "playtime": "120h Average",
+    "releaseDate": "2024-01-10",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "StarMapCurator",
+        "level": "Elite Strategist",
+        "rating": 4,
+        "content": "The depth of the diplomacy system is unparalleled. Building alliances across species with completely different value systems feels genuinely alien and rewarding.",
+        "helpful": 62,
+        "date": "2024-01-15"
+      },
+      {
+        "id": "r2",
+        "username": "GalacticWarden",
+        "level": "Contributor",
+        "rating": 5,
+        "content": "Hundreds of hours in and I am still discovering new mechanics. The late-game crisis events are absolutely brutal and require complete strategic reassessment.",
+        "helpful": 44,
+        "date": "2024-01-20"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Positive",
+      "sentimentScore": 78,
+      "finalScore": 8.5,
+      "pros": ["Unparalleled diplomatic depth", "Emergent storytelling through mechanics", "Incredible replayability"],
+      "cons": ["Steep learning curve for newcomers", "Performance issues in late-game large empires"]
+    }
+  },
+  {
+    "id": "3",
+    "title": "Kernel Panic",
+    "genre": "Simulation",
+    "description": "A brutalist simulation of network architecture collapse. You are the last sys-admin standing between civilization and the void.",
+    "thumbnail": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1400&q=80",
+    "rating": 9.2,
+    "developer": "Null Pointer Labs",
+    "publisher": "Binary Edge",
+    "playtime": "40h Average",
+    "releaseDate": "2024-02-28",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "SysAdminX",
+        "level": "Technical Reviewer",
+        "rating": 5,
+        "content": "As someone who works in infrastructure, this game gets it horrifyingly right. The cascade failure mechanics gave me actual anxiety. A masterwork of tension.",
+        "helpful": 89,
+        "date": "2024-03-05"
+      },
+      {
+        "id": "r2",
+        "username": "PacketLoss",
+        "level": "Verified Critic",
+        "rating": 4,
+        "content": "Incredibly tense and rewarding. The puzzle design escalates perfectly. My only gripe is the tutorial being too sparse for non-technical players.",
+        "helpful": 35,
+        "date": "2024-03-01"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Highly Positive",
+      "sentimentScore": 88,
+      "finalScore": 9.2,
+      "pros": ["Authentic technical tension", "Incredibly designed puzzle escalation", "Unique aesthetic brutalism"],
+      "cons": ["Tutorial too sparse for casual players", "Niche appeal limits audience"]
+    }
+  },
+  {
+    "id": "4",
+    "title": "Eldritch Vale",
+    "genre": "RPG",
+    "description": "Descend into a world where the laws of physics have been rewritten by an ancient cosmic awakening. Survive. Adapt. Transcend.",
+    "thumbnail": "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=1400&q=80",
+    "rating": 7.9,
+    "developer": "Hollow Crown",
+    "publisher": "Void Edition",
+    "playtime": "70h Average",
+    "releaseDate": "2023-11-01",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "CosmicDrifter",
+        "level": "Philosopher",
+        "rating": 4,
+        "content": "The lore is dense but incredibly rewarding for those willing to dig. Boss encounters feel like confronting actual cosmic horror — unfair, unknowable, and strangely beautiful.",
+        "helpful": 55,
+        "date": "2023-11-10"
+      },
+      {
+        "id": "r2",
+        "username": "MirrorMaze",
+        "level": "Contributor",
+        "rating": 3,
+        "content": "Great atmosphere but performance optimization is lacking. Frame drops in the Vale proper are inexcusable on current-gen hardware.",
+        "helpful": 22,
+        "date": "2023-11-15"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Mixed Positive",
+      "sentimentScore": 65,
+      "finalScore": 7.9,
+      "pros": ["Dense and rewarding lore", "Unique cosmic horror boss design", "Exceptional atmospheric world-building"],
+      "cons": ["Performance optimization issues", "Lore gatekeeping alienates casual players"]
+    }
+  },
+  {
+    "id": "5",
+    "title": "Titan Fallback",
+    "genre": "Shooter",
+    "description": "A relentless co-op shooter set in the ruins of a mega-city. Squad coordination is survival. Lone wolves get erased.",
+    "thumbnail": "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1400&q=80",
+    "rating": 8.8,
+    "developer": "IronSight Games",
+    "publisher": "Collateral Media",
+    "playtime": "80h Average",
+    "releaseDate": "2024-02-14",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "SquadLeadAlpha",
+        "level": "Tactical Expert",
+        "rating": 5,
+        "content": "Best co-op shooter since the genre peak. The class synergy system rewards genuine teamwork and punishes selfish play ruthlessly. Online community is excellent.",
+        "helpful": 91,
+        "date": "2024-02-20"
+      },
+      {
+        "id": "r2",
+        "username": "SoloRifle",
+        "level": "Casual Player",
+        "rating": 3,
+        "content": "If you are a solo player this will be frustrating. Matchmaking is slow and SBMM feels inconsistent. The core gunplay is fantastic though.",
+        "helpful": 47,
+        "date": "2024-02-22"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Positive",
+      "sentimentScore": 80,
+      "finalScore": 8.8,
+      "pros": ["Best-in-class squad synergy system", "Fantastic gunplay mechanics", "Rewarding team coordination"],
+      "cons": ["Poor solo player experience", "Slow matchmaking, inconsistent SBMM"]
+    }
+  },
+  {
+    "id": "6",
+    "title": "Mach 1: Overdrive",
+    "genre": "Racing",
+    "description": "The fastest racing simulation ever built. Real physics. Real tracks. Real consequences. Blink and you are a crater.",
+    "thumbnail": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1558981852-426c085c5078?w=1400&q=80",
+    "rating": 9.5,
+    "developer": "Velocity Engine",
+    "publisher": "RedLine Publications",
+    "playtime": "35h Average",
+    "releaseDate": "2024-03-01",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "ApexHunter",
+        "level": "Racing Veteran",
+        "rating": 5,
+        "content": "The physics model is borderline supernatural. Every surface has distinct grip characteristics and the force feedback implementation is the best I have experienced. A sim racer's dream.",
+        "helpful": 115,
+        "date": "2024-03-08"
+      },
+      {
+        "id": "r2",
+        "username": "CasualDriver",
+        "level": "New Player",
+        "rating": 4,
+        "content": "Even as someone who does not typically play sims, the accessibility options made it approachable. The career mode progression is addictive.",
+        "helpful": 38,
+        "date": "2024-03-05"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Highly Positive",
+      "sentimentScore": 95,
+      "finalScore": 9.5,
+      "pros": ["Industry-leading physics simulation", "Best-in-class force feedback implementation", "Excellent accessibility options"],
+      "cons": ["Limited car roster at launch", "Online servers unstable during peak hours"]
+    }
+  },
+  {
+    "id": "7",
+    "title": "Phantom Circuit",
+    "genre": "Puzzle",
+    "description": "A mind-bending puzzle game that challenges perception of space, time, and causality through 200 hand-crafted interconnected chambers.",
+    "thumbnail": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1400&q=80",
+    "rating": 8.3,
+    "developer": "Paradox Loop",
+    "publisher": "Enigma Works",
+    "playtime": "25h Average",
+    "releaseDate": "2023-12-15",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "ThinkTank404",
+        "level": "Puzzle Architect",
+        "rating": 4,
+        "content": "Each chamber feels meticulously designed. The causality puzzles in the third act took me days to crack and the satisfaction was immense. Highly recommended for patient thinkers.",
+        "helpful": 61,
+        "date": "2023-12-22"
+      },
+      {
+        "id": "r2",
+        "username": "QuickSolve",
+        "level": "Speedrunner",
+        "rating": 4,
+        "content": "Incredible puzzle design. The mechanics layer beautifully and the optional challenge rooms are brutally satisfying. Minor complaint on load times between chambers.",
+        "helpful": 29,
+        "date": "2023-12-20"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Positive",
+      "sentimentScore": 76,
+      "finalScore": 8.3,
+      "pros": ["Meticulous chamber design", "Layered and beautifully escalating mechanics", "Exceptional satisfaction on solve"],
+      "cons": ["Load times between chambers", "Final act difficulty spike may frustrate some"]
+    }
+  },
+  {
+    "id": "8",
+    "title": "Verdant Collapse",
+    "genre": "Survival",
+    "description": "Nature has reclaimed the cities. You are the last archivist, cataloguing the ruins of a world that forgot how to listen.",
+    "thumbnail": "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80",
+    "banner": "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=1400&q=80",
+    "rating": 7.6,
+    "developer": "Green Signal",
+    "publisher": "Moss & Memory",
+    "playtime": "45h Average",
+    "releaseDate": "2024-01-25",
+    "featured": false,
+    "reviews": [
+      {
+        "id": "r1",
+        "username": "EcoWarden",
+        "level": "Explorer",
+        "rating": 4,
+        "content": "The environmental storytelling is extraordinary. Every collapsed shopping mall and overtaken highway tells a complete story. The survival loop is tight and respectful of your time.",
+        "helpful": 43,
+        "date": "2024-02-01"
+      },
+      {
+        "id": "r2",
+        "username": "SurvivalPurist",
+        "level": "Hardcore",
+        "rating": 3,
+        "content": "Beautiful but the crafting system feels undernourished. Too few recipe paths and the hunger mechanic is annoyingly aggressive. Worth playing for the visuals alone though.",
+        "helpful": 18,
+        "date": "2024-02-05"
+      }
+    ],
+    "aiSummary": {
+      "sentiment": "Mixed Positive",
+      "sentimentScore": 62,
+      "finalScore": 7.6,
+      "pros": ["Extraordinary environmental storytelling", "Tight and respectful survival loop", "Stunning visual reclamation of urban spaces"],
+      "cons": ["Undercooked crafting system", "Aggressive hunger mechanic disrupts pacing"]
+    }
+  }
+]
