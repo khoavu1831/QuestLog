@@ -6,7 +6,7 @@ import GameCard from '../components/GameCard'
 import FilterBar from '../components/FilterBar'
 import LoadingSkeleton from '../components/LoadingSkeleton'
 
-const UNCOVER_CARD_COUNT = 128
+const PAGE_SIZE = 8
 
 export default function GameListPage() {
   const { games } = useApp()
@@ -14,6 +14,7 @@ export default function GameListPage() {
   const [genre, setGenre] = useState('All')
   const [sort, setSort] = useState('newest')
   const [loading, setLoading] = useState(true)
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
 
   const searchQuery = searchParams.get('search') || ''
   const sortParam = searchParams.get('sort')
@@ -21,6 +22,10 @@ export default function GameListPage() {
   useEffect(() => {
     if (sortParam === 'rating') setSort('rating')
   }, [sortParam])
+
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE)
+  }, [genre, sort, searchQuery])
 
   useEffect(() => {
     const t = setTimeout(() => setLoading(false), 900)
@@ -106,17 +111,22 @@ export default function GameListPage() {
                     gap: '20px',
                   }}
                 >
-                  {filtered.map((game, i) => (
+                  {filtered.slice(0, visibleCount).map((game, i) => (
                     <motion.div
                       key={game.id}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.35, delay: i * 0.06 }}
+                      transition={{ duration: 0.35, delay: Math.min(i, PAGE_SIZE - 1) * 0.06 }}
                     >
                       <GameCard game={game} />
                     </motion.div>
                   ))}
-                  <UncoverCard remaining={UNCOVER_CARD_COUNT} />
+                  {visibleCount < filtered.length && (
+                    <UncoverCard
+                      remaining={filtered.length - visibleCount}
+                      onLoadMore={() => setVisibleCount(prev => prev + PAGE_SIZE)}
+                    />
+                  )}
                 </div>
               )}
             </motion.div>
@@ -198,23 +208,28 @@ function HeroSection({ searchQuery }) {
   )
 }
 
-function UncoverCard({ remaining }) {
+function UncoverCard({ remaining, onLoadMore }) {
+  const [hovered, setHovered] = useState(false)
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, delay: 0.5 }}
+      transition={{ duration: 0.35, delay: 0.3 }}
+      onClick={onLoadMore}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={{
         borderRadius: '1rem',
-        border: '1px solid rgba(255,255,255,0.07)',
-        background: 'rgba(255,255,255,0.02)',
+        border: `1px solid ${hovered ? 'rgba(214,123,255,0.35)' : 'rgba(255,255,255,0.07)'}`,
+        background: hovered ? 'rgba(214,123,255,0.05)' : 'rgba(255,255,255,0.02)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: '200px',
         cursor: 'pointer',
-        transition: 'border-color 0.2s',
+        transition: 'border-color 0.2s, background 0.2s',
       }}
     >
       <div
@@ -222,13 +237,15 @@ function UncoverCard({ remaining }) {
           width: '44px',
           height: '44px',
           borderRadius: '50%',
-          border: '1px solid rgba(255,255,255,0.12)',
+          border: `1px solid ${hovered ? 'rgba(214,123,255,0.4)' : 'rgba(255,255,255,0.12)'}`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           fontSize: '1.5rem',
-          color: 'rgba(255,255,255,0.4)',
+          color: hovered ? '#D67BFF' : 'rgba(255,255,255,0.4)',
           marginBottom: '12px',
+          transition: 'all 0.2s',
+          boxShadow: hovered ? '0 0 14px rgba(214,123,255,0.25)' : 'none',
         }}
       >
         +
@@ -238,14 +255,15 @@ function UncoverCard({ remaining }) {
           fontFamily: 'Space Grotesk, sans-serif',
           fontWeight: 600,
           fontSize: '0.95rem',
-          color: 'rgba(255,255,255,0.6)',
+          color: hovered ? '#D67BFF' : 'rgba(255,255,255,0.6)',
           marginBottom: '4px',
+          transition: 'color 0.2s',
         }}
       >
         Uncover More
       </p>
       <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.25)' }}>
-        {remaining} items remaining
+        {remaining} item{remaining !== 1 ? 's' : ''} remaining
       </p>
     </motion.div>
   )
