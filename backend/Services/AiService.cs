@@ -32,7 +32,7 @@ public class AiService(HttpClient httpClient, ILogger<AiService> logger)
         var words = content.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         int wordCount = words.Length;
 
-        if (wordCount < 15)
+        if (wordCount < 3)
         {
             return new AiResult("NOT HELPFUL", 100f);
         }
@@ -41,7 +41,7 @@ public class AiService(HttpClient httpClient, ILogger<AiService> logger)
         {
             <= 2 => 0.70f,
             3 => 0.50f,
-            _ => 0.35f
+            _ => 0.45f
         };
 
         string[] domainKeywords = ["graphics", "gameplay", "story", "mechanics", "bugs", "performance", "fps", "soundtrack", "combat", "optimization"];
@@ -52,6 +52,10 @@ public class AiService(HttpClient httpClient, ILogger<AiService> logger)
         if (wordCount > 30 && keywordCount >= 2)
         {
             prob = Math.Min(prob + 0.15f, 1.0f);
+        }
+        else if (wordCount < 10)
+        {
+            prob = Math.Max(prob - 0.15f, 0.0f);
         }
 
         if (prob >= threshold)

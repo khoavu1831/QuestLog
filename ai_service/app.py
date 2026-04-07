@@ -18,7 +18,7 @@ def apply_rules(text: str, rating: int, base_prob: float) -> dict:
     words = text.split()
     word_count = len(words)
 
-    if word_count < 15:
+    if word_count < 3:
         return {"label": "NOT HELPFUL", "score": 100.0}
 
     if rating <= 2:
@@ -26,7 +26,7 @@ def apply_rules(text: str, rating: int, base_prob: float) -> dict:
     elif rating == 3:
         threshold = 0.50
     else:
-        threshold = 0.35
+        threshold = 0.45
 
     text_lower = text.lower()
     found = sum(
@@ -37,6 +37,8 @@ def apply_rules(text: str, rating: int, base_prob: float) -> dict:
     prob = base_prob
     if word_count > 30 and found >= 2:
         prob = min(prob + 0.15, 1.0)
+    elif word_count < 10:
+        prob = max(prob - 0.15, 0.0)
 
     if prob >= threshold:
         confidence = 50.0 + ((prob - threshold) / (1.0 - threshold)) * 50.0
@@ -65,6 +67,9 @@ def classify():
         base_prob = float(proba[helpful_idx])
     else:
         base_prob = float(max(proba))
+
+    if features.nnz == 0:
+        base_prob = min(base_prob, 0.20)
 
     result = apply_rules(text, rating, base_prob)
     return jsonify(result)
