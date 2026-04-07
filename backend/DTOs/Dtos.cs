@@ -12,9 +12,10 @@ public record ReviewResponse(
     string GameId,
     string UserId,
     string Username,
+    string Level,
     int Rating,
     string Content,
-    int HelpfulCount,
+    int Helpful,
     string Date,
     string AiLabel,
     float AiScore
@@ -31,6 +32,8 @@ public record GameResponse(
     string Playtime,
     string ReleaseDate,
     float Rating,
+    bool Featured,
+    Models.AiSummary? AiSummary,
     List<ReviewResponse> Reviews
 );
 
@@ -45,6 +48,7 @@ public record GameListItem(
     string Playtime,
     string ReleaseDate,
     float Rating,
+    bool Featured,
     int ReviewCount
 );
 

@@ -21,6 +21,7 @@ public class GameController(AppDbContext db) : ControllerBase
             g.Genre, g.Developer, g.Description, g.Playtime,
             g.ReleaseDate.ToString("yyyy-MM-dd"),
             g.Rating,
+            g.Featured,
             g.Reviews.Count
         ));
 
@@ -41,6 +42,7 @@ public class GameController(AppDbContext db) : ControllerBase
             .OrderByDescending(r => r.Date)
             .Select(r => new ReviewResponse(
                 r.Id, r.GameId, r.UserId, r.Username,
+                string.IsNullOrEmpty(r.AiLabel) ? "Contributor" : r.AiLabel,
                 r.Rating, r.Content, r.HelpfulCount,
                 r.Date.ToString("yyyy-MM-dd"),
                 r.AiLabel, r.AiScore
@@ -52,6 +54,8 @@ public class GameController(AppDbContext db) : ControllerBase
             game.Genre, game.Developer, game.Description, game.Playtime,
             game.ReleaseDate.ToString("yyyy-MM-dd"),
             game.Rating,
+            game.Featured,
+            game.AiSummary,
             reviews
         );
 

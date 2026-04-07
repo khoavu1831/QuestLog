@@ -35,5 +35,9 @@ public class Game
     [Column(TypeName = "float")]
     public float Rating { get; set; }
 
+    public bool Featured { get; set; }
+
+    public AiSummary? AiSummary { get; set; }
+
     public ICollection<Review> Reviews { get; set; } = [];
 }

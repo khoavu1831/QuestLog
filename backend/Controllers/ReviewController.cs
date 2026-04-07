@@ -57,9 +57,10 @@ public class ReviewController(AppDbContext db, AiService aiService) : Controller
 
         return Ok(new ReviewResponse(
             review.Id, review.GameId, review.UserId, review.Username,
+            string.IsNullOrEmpty(review.AiLabel) ? "Contributor" : review.AiLabel,
             review.Rating, review.Content, review.HelpfulCount,
             review.Date.ToString("yyyy-MM-dd"),
-            review.AiLabel, review.AiScore
+            review.AiLabel ?? "", review.AiScore
         ));
     }
 
