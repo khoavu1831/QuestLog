@@ -1,16 +1,20 @@
-import { createContext, useContext, useState } from 'react'
-import gamesData from '../data/games.json'
-import usersData from '../data/users.json'
+import { createContext, useContext, useState, useEffect } from 'react'
 
 const AppContext = createContext(null)
 
 export function AppProvider({ children }) {
   const [darkMode, setDarkMode] = useState(true)
-  const [games, setGames] = useState(gamesData)
-  const [users, setUsers] = useState(usersData)
+  const [games, setGames] = useState([])
   const [currentUser, setCurrentUser] = useState(null)
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const [authModalMode, setAuthModalMode] = useState('login')
+
+  useEffect(() => {
+    fetch('/api/games')
+      .then(res => res.json())
+      .then(data => setGames(data))
+      .catch(console.error)
+  }, [])
 
   function toggleDarkMode() {
     setDarkMode(prev => !prev)
@@ -25,73 +29,68 @@ export function AppProvider({ children }) {
     setAuthModalOpen(false)
   }
 
-  function login(username, password) {
-    const user = users.find(
-      u => u.username.toLowerCase() === username.toLowerCase() && u.password === password
-    )
-    if (!user) return { success: false, error: 'Invalid username or password.' }
-    setCurrentUser(user)
-    setAuthModalOpen(false)
-    return { success: true }
+  async function login(username, password) {
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      })
+      const data = await res.json()
+      if (!res.ok) return { success: false, error: data.error || 'Login failed' }
+      setCurrentUser(data)
+      setAuthModalOpen(false)
+      return { success: true }
+    } catch (err) {
+      return { success: false, error: err.message }
+    }
   }
 
-  function register(username, password) {
-    const exists = users.find(u => u.username.toLowerCase() === username.toLowerCase())
-    if (exists) return { success: false, error: 'Username already taken.' }
-    if (username.trim().length < 3) return { success: false, error: 'Username must be at least 3 characters.' }
-    if (password.length < 6) return { success: false, error: 'Password must be at least 6 characters.' }
-    const newUser = {
-      id: `u${Date.now()}`,
-      username: username.trim(),
-      password,
+  async function register(username, password) {
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      })
+      const data = await res.json()
+      if (!res.ok) return { success: false, error: data.error || 'Registration failed' }
+      setCurrentUser(data)
+      setAuthModalOpen(false)
+      return { success: true }
+    } catch (err) {
+      return { success: false, error: err.message }
     }
-    setUsers(prev => [...prev, newUser])
-    setCurrentUser(newUser)
-    setAuthModalOpen(false)
-    return { success: true }
   }
 
   function logout() {
     setCurrentUser(null)
   }
 
-  function addReview(gameId, review) {
-    if (!currentUser) return
-    setGames(prev =>
-      prev.map(game => {
-        if (game.id !== gameId) return game
-        const newReview = {
-          id: `r${Date.now()}`,
-          username: currentUser.username,
-          level: 'New Contributor',
-          rating: review.rating,
-          content: review.content,
-          helpful: 0,
-          date: new Date().toISOString().split('T')[0],
-        }
-        const allReviews = [newReview, ...game.reviews]
-        const avgRating = allReviews.reduce((sum, r) => sum + r.rating, 0) / allReviews.length
-        return {
-          ...game,
-          reviews: allReviews,
-          rating: Math.round(avgRating * 10) / 10,
-        }
+  async function addReview(gameId, review) {
+    if (!currentUser) return null
+    try {
+      const res = await fetch(`/api/games/${gameId}/reviews`, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'X-User-Id': currentUser.id,
+          'X-Username': currentUser.username
+        },
+        body: JSON.stringify(review)
       })
-    )
+      if (!res.ok) throw new Error('Failed to add review')
+      return await res.json()
+    } catch (e) {
+      console.error(e)
+      return null
+    }
   }
 
-  function markHelpful(gameId, reviewId) {
-    setGames(prev =>
-      prev.map(game => {
-        if (game.id !== gameId) return game
-        return {
-          ...game,
-          reviews: game.reviews.map(r =>
-            r.id === reviewId ? { ...r, helpful: r.helpful + 1 } : r
-          ),
-        }
-      })
-    )
+  async function markHelpful(gameId, reviewId) {
+    try {
+      await fetch(`/api/reviews/${reviewId}/helpful`, { method: 'POST' })
+    } catch (e) { console.error(e) }
   }
 
   return (

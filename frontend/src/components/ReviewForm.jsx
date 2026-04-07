@@ -3,7 +3,7 @@ import toast from 'react-hot-toast'
 import RatingStars from './RatingStars'
 import { useApp } from '../context/AppContext'
 
-export default function ReviewForm({ gameId }) {
+export default function ReviewForm({ gameId, onReviewAdded }) {
   const { addReview, currentUser, openAuthModal } = useApp()
   const [rating, setRating] = useState(0)
   const [content, setContent] = useState('')
@@ -82,7 +82,7 @@ export default function ReviewForm({ gameId }) {
     )
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
     if (rating === 0) {
       toast.error('Please select a rating before submitting.')
@@ -93,13 +93,16 @@ export default function ReviewForm({ gameId }) {
       return
     }
     setSubmitting(true)
-    setTimeout(() => {
-      addReview(gameId, { rating, content: content.trim() })
+    const newReview = await addReview(gameId, { rating, content: content.trim() })
+    if (newReview) {
       toast.success('Your transmission has been logged.')
       setRating(0)
       setContent('')
-      setSubmitting(false)
-    }, 600)
+      if (onReviewAdded) onReviewAdded(newReview)
+    } else {
+      toast.error('Failed to transmit. Please try again.')
+    }
+    setSubmitting(false)
   }
 
   return (

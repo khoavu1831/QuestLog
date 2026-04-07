@@ -9,16 +9,40 @@ import AISummary from '../components/AISummary'
 export default function GameDetailPage() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { games } = useApp()
   const [loading, setLoading] = useState(true)
-
-  const game = games.find(g => g.id === id)
+  const [game, setGame] = useState(null)
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    const t = setTimeout(() => setLoading(false), 600)
-    return () => clearTimeout(t)
+    setLoading(true)
+    fetch(`/api/games/${id}`)
+      .then(res => {
+        if (!res.ok) throw new Error('Not found')
+        return res.json()
+      })
+      .then(data => {
+        setGame(data)
+        setLoading(false)
+      })
+      .catch((e) => {
+        console.error(e)
+        setLoading(false)
+      })
   }, [id])
+
+  function handleAddReview(newReview) {
+    if (newReview) {
+      setGame(prev => {
+        const allReviews = [newReview, ...prev.reviews]
+        const avgRating = allReviews.reduce((sum, r) => sum + r.rating, 0) / allReviews.length
+        return {
+          ...prev,
+          reviews: allReviews,
+          rating: Math.round(avgRating * 10) / 10
+        }
+      })
+    }
+  }
 
   if (!game && !loading) {
     return (
@@ -98,7 +122,7 @@ export default function GameDetailPage() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <ReviewForm gameId={game.id} />
+            <ReviewForm gameId={game.id} onReviewAdded={handleAddReview} />
             <CommentList reviews={game.reviews} gameId={game.id} />
           </div>
         </div>
