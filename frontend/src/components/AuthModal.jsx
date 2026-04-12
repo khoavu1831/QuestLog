@@ -2,263 +2,173 @@ import { useState } from 'react'
 import { useApp } from '../context/AppContext'
 
 export default function AuthModal() {
-  const { authModalOpen, authModalMode, closeAuthModal, login, register, openAuthModal } = useApp()
+  const { authModalOpen, authModalMode, closeAuthModal, login, register } = useApp()
   const [mode, setMode] = useState(authModalMode)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [confirm, setConfirm] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
   if (!authModalOpen) return null
-
-  function switchMode(newMode) {
-    setMode(newMode)
-    setError('')
-    setUsername('')
-    setPassword('')
-    setConfirm('')
-  }
 
   function handleSubmit(e) {
     e.preventDefault()
     setError('')
 
     if (!username.trim() || !password) {
-      setError('All fields are required.')
+      setError('Enter your mobile number or email address.')
       return
     }
 
-    if (mode === 'register') {
-      if (password !== confirm) {
-        setError('Passwords do not match.')
-        return
-      }
-      setLoading(true)
-      setTimeout(() => {
+    setLoading(true)
+    setTimeout(() => {
+      if (mode === 'register') {
         const result = register(username, password)
         if (!result.success) setError(result.error)
-        setLoading(false)
-      }, 400)
-    } else {
-      setLoading(true)
-      setTimeout(() => {
+        else closeAuthModal()
+      } else {
         const result = login(username, password)
         if (!result.success) setError(result.error)
-        setLoading(false)
-      }, 400)
-    }
+        else closeAuthModal()
+      }
+      setLoading(false)
+    }, 400)
   }
 
   return (
     <div
-      onClick={closeAuthModal}
       style={{
         position: 'fixed',
         inset: 0,
-        background: 'rgba(0,0,0,0.75)',
-        backdropFilter: 'blur(6px)',
+        background: 'white', // Full page white for login feel
         zIndex: 1000,
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
-        padding: '1rem',
+        padding: '20px',
       }}
     >
+      <div style={{ marginBottom: '20px', fontSize: '24px', fontWeight: 'bold', cursor: 'pointer' }} onClick={closeAuthModal}>
+        amazon<span style={{ color: '#ff9900', fontSize: '14px' }}>.fake</span>
+      </div>
+
       <div
-        onClick={e => e.stopPropagation()}
         style={{
-          background: '#141414',
-          border: '1px solid rgba(255,255,255,0.08)',
-          borderRadius: '1.25rem',
-          padding: '2rem',
+          border: '1px solid #ddd',
+          borderRadius: '8px',
+          padding: '20px 25px',
           width: '100%',
-          maxWidth: '400px',
-          boxShadow: '0 0 40px rgba(0,0,0,0.6)',
+          maxWidth: '350px',
         }}
       >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.75rem' }}>
-          <h2
-            style={{
-              fontFamily: 'Space Grotesk, sans-serif',
-              fontWeight: 700,
-              fontSize: '1.25rem',
-              color: '#fff',
-            }}
-          >
-            {mode === 'login' ? 'Access Archive' : 'Create Account'}
-          </h2>
-          <button
-            onClick={closeAuthModal}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: 'rgba(255,255,255,0.4)',
-              fontSize: '1.2rem',
-              lineHeight: 1,
-              cursor: 'pointer',
-              padding: '4px 8px',
-              borderRadius: '6px',
-              transition: 'color 0.2s',
-            }}
-            onMouseEnter={e => e.target.style.color = '#fff'}
-            onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.4)'}
-          >
-            x
-          </button>
-        </div>
+        <h1 style={{ fontSize: '28px', fontWeight: '400', marginBottom: '15px' }}>
+          {mode === 'login' ? 'Sign in' : 'Create account'}
+        </h1>
 
-        <div
-          style={{
-            display: 'flex',
-            background: 'rgba(255,255,255,0.04)',
-            borderRadius: '8px',
-            padding: '4px',
-            marginBottom: '1.5rem',
-            gap: '4px',
-          }}
-        >
-          <TabButton active={mode === 'login'} onClick={() => switchMode('login')}>
-            Login
-          </TabButton>
-          <TabButton active={mode === 'register'} onClick={() => switchMode('register')}>
-            Register
-          </TabButton>
-        </div>
+        {error && (
+          <div style={{ color: '#B12704', fontSize: '13px', marginBottom: '15px', display: 'flex', gap: '5px' }}>
+            <span style={{ fontWeight: 'bold' }}>!</span> {error}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '1rem' }}>
-            <AuthInput
+          <div style={{ marginBottom: '15px' }}>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 'bold', marginBottom: '5px' }}>
+              Username or mobile phone number
+            </label>
+            <input
               type="text"
-              placeholder="Username"
               value={username}
               onChange={e => setUsername(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '7px 10px',
+                border: '1px solid #a6a6a6',
+                borderTopColor: '#949494',
+                borderRadius: '3px',
+                boxShadow: '0 1px 0 rgba(255,255,255,.5), 0 1px 0 rgba(0,0,0,.07) inset',
+                outline: 'none',
+                fontSize: '14px'
+              }}
+              onFocus={e => { e.target.style.border = '1px solid #e77600'; e.target.style.boxShadow = '0 0 3px 2px rgba(228,121,17,.5) inset'; }}
+              onBlur={e => { e.target.style.border = '1px solid #a6a6a6'; e.target.style.boxShadow = '0 1px 0 rgba(255,255,255,.5), 0 1px 0 rgba(0,0,0,.07) inset'; }}
             />
-            <AuthInput
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-            />
-            {mode === 'register' && (
-              <AuthInput
-                type="password"
-                placeholder="Confirm Password"
-                value={confirm}
-                onChange={e => setConfirm(e.target.value)}
-              />
-            )}
           </div>
 
-          {error && (
-            <p
+          <div style={{ marginBottom: '15px' }}>
+            <label style={{ display: 'block', fontSize: '13px', fontWeight: 'bold', marginBottom: '5px' }}>
+              Password
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               style={{
-                color: '#FF6B6B',
-                fontSize: '0.8rem',
-                marginBottom: '12px',
-                padding: '8px 12px',
-                background: 'rgba(255,107,107,0.08)',
-                borderRadius: '6px',
-                border: '1px solid rgba(255,107,107,0.2)',
+                width: '100%',
+                padding: '7px 10px',
+                border: '1px solid #a6a6a6',
+                borderTopColor: '#949494',
+                borderRadius: '3px',
+                boxShadow: '0 1px 0 rgba(255,255,255,.5), 0 1px 0 rgba(0,0,0,.07) inset',
+                outline: 'none',
+                fontSize: '14px'
               }}
-            >
-              {error}
-            </p>
-          )}
+              onFocus={e => { e.target.style.border = '1px solid #e77600'; e.target.style.boxShadow = '0 0 3px 2px rgba(228,121,17,.5) inset'; }}
+              onBlur={e => { e.target.style.border = '1px solid #a6a6a6'; e.target.style.boxShadow = '0 1px 0 rgba(255,255,255,.5), 0 1px 0 rgba(0,0,0,.07) inset'; }}
+            />
+          </div>
 
           <button
             type="submit"
             disabled={loading}
-            style={{
-              width: '100%',
-              padding: '11px',
-              borderRadius: '10px',
-              background: loading ? 'rgba(214,123,255,0.15)' : 'rgba(214,123,255,0.85)',
-              border: 'none',
-              color: loading ? '#D67BFF' : '#fff',
-              fontSize: '0.9rem',
-              fontWeight: 700,
-              fontFamily: 'Space Grotesk, sans-serif',
-              letterSpacing: '0.04em',
-              cursor: loading ? 'default' : 'pointer',
-              transition: 'all 0.2s',
-              boxShadow: loading ? 'none' : '0 0 18px rgba(214,123,255,0.28)',
-            }}
-            onMouseEnter={e => { if (!loading) { e.currentTarget.style.background = '#D67BFF'; e.currentTarget.style.boxShadow = '0 0 26px rgba(214,123,255,0.45)' } }}
-            onMouseLeave={e => { if (!loading) { e.currentTarget.style.background = 'rgba(214,123,255,0.85)'; e.currentTarget.style.boxShadow = '0 0 18px rgba(214,123,255,0.28)' } }}
+            className="a-button-primary"
+            style={{ width: '100%', padding: '6px', fontSize: '13px', marginBottom: '15px' }}
           >
-            {loading ? '...' : mode === 'login' ? 'Login' : 'Create Account'}
+            {loading ? 'Moving...' : 'Continue'}
           </button>
         </form>
 
-        <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.8rem', color: 'rgba(255,255,255,0.35)' }}>
-          {mode === 'login' ? "Don't have an account? " : 'Already have an account? '}
-          <button
-            onClick={() => switchMode(mode === 'login' ? 'register' : 'login')}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: '#D67BFF',
-              fontSize: '0.8rem',
-              cursor: 'pointer',
-              padding: 0,
-              fontWeight: 600,
-            }}
-          >
-            {mode === 'login' ? 'Register' : 'Login'}
-          </button>
+        <p style={{ fontSize: '12px', lineHeight: '1.5', marginTop: '15px' }}>
+          By continuing, you agree to Amazon.fake's <a href="#" className="a-link-normal">Conditions of Use</a> and <a href="#" className="a-link-normal">Privacy Notice</a>.
         </p>
+
+        {mode === 'login' && (
+          <div style={{ marginTop: '20px', fontSize: '13px' }}>
+            <a href="#" className="a-link-normal">Need help?</a>
+          </div>
+        )}
       </div>
+
+      <div style={{ width: '100%', maxWidth: '350px', marginTop: '15px' }}>
+        {mode === 'login' ? (
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '15px' }}>
+              <hr style={{ flex: 1, borderTop: '1px solid #e7e7e7', borderBottom: 'none', borderLeft: 'none', borderRight: 'none' }} />
+              <div style={{ color: '#767676', fontSize: '12px', padding: '0 10px' }}>New to Amazon.fake?</div>
+              <hr style={{ flex: 1, borderTop: '1px solid #e7e7e7', borderBottom: 'none', borderLeft: 'none', borderRight: 'none' }} />
+            </div>
+            <button 
+              className="a-button-base" 
+              style={{ width: '100%', padding: '6px', fontSize: '13px' }}
+              onClick={() => setMode('register')}
+            >
+              Create your Amazon.fake account
+            </button>
+          </div>
+        ) : (
+          <div style={{ fontSize: '13px' }}>
+            Already have an account? <a href="#" className="a-link-normal" onClick={(e) => { e.preventDefault(); setMode('login'); }}>Sign in</a>
+          </div>
+        )}
+      </div>
+      
+      {/* Cancel button since it's a modal taking over */}
+      <div style={{ marginTop: '30px' }}>
+        <button onClick={closeAuthModal} style={{ background: 'none', border: 'none', color: '#007185', cursor: 'pointer', fontSize: '13px' }}>
+          Cancel / Back to Store
+        </button>
+      </div>
+
     </div>
-  )
-}
-
-function TabButton({ active, onClick, children }) {
-  return (
-    <button
-      onClick={onClick}
-      style={{
-        flex: 1,
-        padding: '7px',
-        borderRadius: '6px',
-        border: 'none',
-        background: active ? 'rgba(214,123,255,0.15)' : 'transparent',
-        color: active ? '#D67BFF' : 'rgba(255,255,255,0.4)',
-        fontSize: '0.85rem',
-        fontWeight: 600,
-        fontFamily: 'Space Grotesk, sans-serif',
-        cursor: 'pointer',
-        transition: 'all 0.2s',
-        borderBottom: active ? '1px solid rgba(214,123,255,0.4)' : '1px solid transparent',
-      }}
-    >
-      {children}
-    </button>
-  )
-}
-
-function AuthInput({ type, placeholder, value, onChange }) {
-  const [focused, setFocused] = useState(false)
-  return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
-      style={{
-        background: 'rgba(255,255,255,0.04)',
-        border: `1px solid ${focused ? 'rgba(214,123,255,0.4)' : 'rgba(255,255,255,0.08)'}`,
-        borderRadius: '8px',
-        color: '#fff',
-        fontSize: '0.875rem',
-        padding: '11px 14px',
-        fontFamily: 'Inter, sans-serif',
-        width: '100%',
-        transition: 'border-color 0.2s',
-        outline: 'none',
-      }}
-    />
   )
 }

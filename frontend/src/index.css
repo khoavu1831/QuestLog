@@ -1,15 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
-
 @import "tailwindcss";
 
 :root {
-  --accent: #D67BFF;
-  --accent-cyan: #00E5FF;
-  --bg-primary: #0D0D0D;
-  --bg-card: rgba(255, 255, 255, 0.04);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --text-primary: #FFFFFF;
-  --text-muted: rgba(255, 255, 255, 0.5);
+  /* Amazon colors */
+  --amz-dark: #131921;
+  --amz-nav: #232f3e;
+  --amz-bg: #eaeded;
+  --amz-yellow: #ffd814;
+  --amz-yellow-hover: #f7ca00;
+  --amz-orange: #ffa41c;
+  --amz-orange-hover: #fa8900;
+  --amz-link: #007185;
+  --amz-link-hover: #c45500;
+  --amz-text: #0f1111;
+  --amz-text-muted: #565959;
+  --amz-price: #B12704;
+  --amz-border: #D5D9D9;
 }
 
 * {
@@ -19,59 +24,83 @@
 }
 
 body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: 'Inter', sans-serif;
+  background-color: var(--amz-bg);
+  color: var(--amz-text);
+  font-family: Arial, sans-serif;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Space Grotesk', sans-serif;
+::selection {
+  background-color: #c8e1e7;
 }
 
-.glass {
-  background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-subtle);
+/* Base utility overrides / additions */
+.a-link-normal {
+  color: var(--amz-link);
+  text-decoration: none;
 }
 
-.glow-accent {
-  box-shadow: 0 0 24px rgba(214, 123, 255, 0.35);
+.a-link-normal:hover {
+  color: var(--amz-link-hover);
+  text-decoration: underline;
 }
 
-.glow-accent-sm {
-  box-shadow: 0 0 12px rgba(214, 123, 255, 0.25);
+.a-button-primary {
+  background-color: var(--amz-yellow);
+  border: 1px solid #FCD200;
+  border-radius: 100px;
+  box-shadow: 0 2px 5px 0 rgba(213,217,217,.5);
+  color: #0F1111;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 10px;
+  text-align: center;
+  transition: all .2s linear;
 }
 
-.glow-cyan {
-  box-shadow: 0 0 24px rgba(0, 229, 255, 0.35);
+.a-button-primary:hover {
+  background-color: var(--amz-yellow-hover);
 }
 
-.accent-text {
-  color: var(--accent);
+.a-button-secondary {
+  background-color: var(--amz-orange);
+  border: 1px solid #FF8F00;
+  border-radius: 100px;
+  box-shadow: 0 2px 5px 0 rgba(213,217,217,.5);
+  color: #0F1111;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 10px;
+  text-align: center;
+  transition: all .2s linear;
 }
 
-.accent-italic {
-  color: var(--accent);
-  font-style: italic;
+.a-button-secondary:hover {
+  background-color: var(--amz-orange-hover);
 }
 
-.text-muted {
-  color: var(--text-muted);
+.a-button-base {
+  background: white;
+  border: 1px solid var(--amz-border);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px 0 rgba(213,217,217,.5);
+  color: #0F1111;
+  cursor: pointer;
+  padding: 5px 10px;
 }
 
-.border-subtle {
-  border-color: var(--border-subtle);
+.a-button-base:hover {
+  background-color: #F7FAFA;
 }
 
+/* Simple Skeleton for loading */
 .skeleton {
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.04) 25%,
-    rgba(255, 255, 255, 0.08) 50%,
-    rgba(255, 255, 255, 0.04) 75%
+    #f2f2f2 25%,
+    #e6e6e6 50%,
+    #f2f2f2 75%
   );
   background-size: 200% 100%;
   animation: shimmer 1.6s infinite;
@@ -82,25 +111,21 @@ h1, h2, h3, h4, h5, h6 {
   100% { background-position: -200% 0; }
 }
 
-.progress-bar-fill {
-  background: linear-gradient(90deg, var(--accent), var(--accent-cyan));
-}
-
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(214, 123, 255, 0.3);
-  border-radius: 3px;
+  background: #c1c1c1;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(214, 123, 255, 0.5);
+  background: #a8a8a8;
 }
 
 input, textarea {
@@ -111,8 +136,8 @@ button {
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  .detail-grid {
-    grid-template-columns: 1fr !important;
-  }
+/* Misc old style leftovers reset */
+.glass {
+  background: #fff;
+  border: 1px solid var(--amz-border);
 }

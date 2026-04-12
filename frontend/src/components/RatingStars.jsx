@@ -25,7 +25,7 @@ export default function RatingStars({ value = 0, onChange = null, size = 'md' })
             onMouseLeave={() => onChange && setHovered(0)}
             style={{
               fontSize: starSize,
-              color: filled ? '#D67BFF' : 'rgba(255,255,255,0.15)',
+              color: filled ? '#ffa41c' : '#cccccc',
               cursor: onChange ? 'pointer' : 'default',
               transition: 'color 0.15s, transform 0.15s',
               display: 'inline-block',

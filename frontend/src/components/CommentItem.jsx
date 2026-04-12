@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { useApp } from '../context/AppContext'
-import RatingStars from './RatingStars'
 
 export default function CommentItem({ review, gameId }) {
   const { markHelpful } = useApp()
   const [marked, setMarked] = useState(false)
+  const [aiPredicting, setAiPredicting] = useState(false)
+  const [aiResult, setAiResult] = useState(review.aiLabel || null)
 
   function handleHelpful() {
     if (!marked) {
@@ -13,123 +14,115 @@ export default function CommentItem({ review, gameId }) {
     }
   }
 
-  const initials = review.username.slice(0, 2).toUpperCase()
+  // Simulate asking AI if it's helpful
+  function handleAskAI() {
+    if (aiResult) return
+    setAiPredicting(true)
+    // Simulate API call to AI Service
+    setTimeout(() => {
+      setAiResult(Math.random() > 0.3 ? 'HELPFUL' : 'NOT HELPFUL')
+      setAiPredicting(false)
+    }, 1500)
+  }
+
+  const reviewDate = new Date(review.date || Date.now()).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  })
 
   return (
-    <div
-      style={{
-        background: 'rgba(255,255,255,0.025)',
-        border: '1px solid rgba(255,255,255,0.06)',
-        borderRadius: '12px',
-        padding: '1.25rem',
-        marginBottom: '1rem',
-      }}
-    >
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div
-            style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, rgba(214,123,255,0.3), rgba(0,229,255,0.2))',
-              border: '1px solid rgba(214,123,255,0.25)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontFamily: 'Space Grotesk, sans-serif',
-              fontWeight: 700,
-              fontSize: '0.8rem',
-              color: '#D67BFF',
-              flexShrink: 0,
-            }}
-          >
-            {initials}
-          </div>
-          <div>
-            <p
-              style={{
-                fontFamily: 'Space Grotesk, sans-serif',
-                fontWeight: 600,
-                fontSize: '0.9rem',
-                color: '#fff',
-                marginBottom: '2px',
-              }}
-            >
-              {review.username}
-            </p>
-            <p
-              style={{
-                fontSize: '0.7rem',
-                color: 'rgba(255,255,255,0.35)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.08em',
-              }}
-            >
-              {review.level}
-            </p>
-          </div>
+    <div style={{ marginBottom: '25px' }}>
+      
+      {/* Profile Header */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
+        <div style={{ width: '34px', height: '34px', borderRadius: '50%', background: '#ccc', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+          <svg fill="#fff" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
         </div>
-
-        <div
-          style={{
-            background: 'rgba(214,123,255,0.1)',
-            border: '1px solid rgba(214,123,255,0.2)',
-            borderRadius: '6px',
-            padding: '3px 10px',
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontWeight: 700,
-            fontSize: '0.85rem',
-            color: '#D67BFF',
-          }}
-        >
-          {review.rating}.0
-        </div>
+        <span style={{ fontSize: '13px' }}>{review.username}</span>
       </div>
 
-      <RatingStars value={review.rating} size="sm" />
+      {/* Rating & Title */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
+        <span style={{ color: '#ffa41c', fontSize: '16px' }}>
+          {review.rating >= 4.5 ? '★★★★★' : review.rating >= 3.5 ? '★★★★☆' : review.rating >= 2.5 ? '★★★☆☆' : review.rating >= 1.5 ? '★★☆☆☆' : '★☆☆☆☆'}
+        </span>
+        <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Solid choice for the price</span>
+      </div>
 
-      <p
-        style={{
-          color: 'rgba(255,255,255,0.7)',
-          fontSize: '0.875rem',
-          lineHeight: 1.7,
-          margin: '12px 0',
-        }}
-      >
+      {/* Date & Location */}
+      <div style={{ fontSize: '13px', color: '#565959', marginBottom: '5px' }}>
+        Reviewed in the United States on {reviewDate}
+      </div>
+
+      {/* Verified Purchase */}
+      <div style={{ fontSize: '11px', color: '#c45500', fontWeight: 'bold', marginBottom: '10px' }}>
+        Verified Purchase
+      </div>
+
+      {/* Review Content */}
+      <p style={{ fontSize: '14px', lineHeight: '20px', marginBottom: '15px' }}>
         {review.content}
       </p>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <p
-          style={{
-            color: 'rgba(255,255,255,0.3)',
-            fontSize: '0.75rem',
-          }}
-        >
-          {marked ? review.helpful + 1 : review.helpful} people found this useful
-        </p>
-
-        <button
+      {/* AI & Helpful Buttons */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginTop: '10px' }}>
+        
+        {/* Amazon Helpful Button */}
+        <button 
           onClick={handleHelpful}
           disabled={marked}
-          style={{
-            fontSize: '0.72rem',
-            fontWeight: 600,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            color: marked ? 'rgba(214,123,255,0.5)' : 'rgba(255,255,255,0.5)',
-            background: 'none',
-            border: 'none',
-            cursor: marked ? 'default' : 'pointer',
-            transition: 'color 0.2s',
-            padding: 0,
-          }}
-          onMouseEnter={e => { if (!marked) e.target.style.color = '#D67BFF' }}
-          onMouseLeave={e => { if (!marked) e.target.style.color = 'rgba(255,255,255,0.5)' }}
+          className="a-button-base"
+          style={{ padding: '6px 20px', fontSize: '13px', cursor: marked ? 'default' : 'pointer', opacity: marked ? 0.7 : 1 }}
         >
-          {marked ? 'Marked Helpful' : 'Mark Helpful'}
+          {marked ? '✓ Helpful' : 'Helpful'}
         </button>
+
+        {/* Fake Amazon divider */}
+        <span style={{ color: '#ddd' }}>|</span>
+
+        <span style={{ fontSize: '13px', color: '#565959' }}>
+          {marked ? review.helpful + 1 : review.helpful} people found this helpful
+        </span>
+
+      </div>
+
+      {/* AI Prediction UI */}
+      <div style={{ marginTop: '15px', background: '#f7fafa', border: '1px solid #d5d9d9', borderRadius: '8px', padding: '10px 15px', display: 'inline-block' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#007185' }}>✨ AI Analysis</span>
+          
+          {aiResult ? (
+            <span style={{ 
+              fontSize: '12px', 
+              padding: '2px 8px', 
+              borderRadius: '12px', 
+              background: aiResult === 'HELPFUL' ? '#EDFDF2' : '#FEF2F2',
+              border: `1px solid ${aiResult === 'HELPFUL' ? '#007600' : '#B12704'}`,
+              color: aiResult === 'HELPFUL' ? '#007600' : '#B12704',
+              fontWeight: 'bold'
+            }}>
+              {aiResult === 'HELPFUL' ? '✓ AI: Likely Helpful' : 'AI: Not Helpful'}
+            </span>
+          ) : (
+            <button 
+              onClick={handleAskAI}
+              disabled={aiPredicting}
+              style={{
+                fontSize: '11px',
+                background: 'white',
+                border: '1px solid #d5d9d9',
+                borderRadius: '4px',
+                padding: '3px 8px',
+                cursor: aiPredicting ? 'default' : 'pointer'
+              }}
+            >
+              {aiPredicting ? 'Analyzing...' : 'Predict Helpfulness'}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   )

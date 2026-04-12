@@ -1,136 +1,30 @@
 export default function AISummary({ aiSummary }) {
-  if (!aiSummary) return null
-
-  const sentimentColor =
-    aiSummary.sentimentScore >= 80 ? '#D67BFF' :
-    aiSummary.sentimentScore >= 60 ? '#00E5FF' : '#FF6B6B'
+  if (!aiSummary) return null;
 
   return (
-    <div
-      style={{
-        background: 'rgba(255,255,255,0.03)',
-        border: '1px solid rgba(255,255,255,0.08)',
-        borderRadius: '1rem',
-        padding: '1.25rem',
-      }}
-    >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1rem' }}>
-        <div
-          style={{
-            width: '8px',
-            height: '8px',
-            borderRadius: '50%',
-            background: '#D67BFF',
-            boxShadow: '0 0 8px rgba(214,123,255,0.6)',
-          }}
-        />
-        <p
-          style={{
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontWeight: 700,
-            fontSize: '0.75rem',
-            letterSpacing: '0.12em',
-            color: 'rgba(255,255,255,0.6)',
-            textTransform: 'uppercase',
-          }}
-        >
-          AI Archive Summary
-        </p>
+    <div style={{ border: '1px solid #d5d9d9', borderRadius: '8px', padding: '15px', marginBottom: '20px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
+        <h4 style={{ fontSize: '16px', fontWeight: 'bold', margin: 0 }}>Customers say</h4>
+        <span style={{ fontSize: '12px', background: '#F0F2F2', padding: '2px 8px', borderRadius: '12px', color: '#565959' }}>AI-generated from the text of customer reviews</span>
       </div>
+      
+      <p style={{ fontSize: '14px', lineHeight: '20px', color: '#0f1111', marginBottom: '10px' }}>
+        Customers like the {aiSummary.pros.map((pro, idx) => {
+          return (idx === aiSummary.pros.length - 1 && idx !== 0) ? ` and ${pro.toLowerCase()}` : (idx === 0 ? pro.toLowerCase() : `, ${pro.toLowerCase()}`);
+        })}. However, some customers have different views on {aiSummary.cons[0]?.toLowerCase()} and {aiSummary.cons[1]?.toLowerCase()}.
+      </p>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-          <p style={{ fontSize: '0.72rem', letterSpacing: '0.08em', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>
-            Sentiment
-          </p>
-          <p style={{ fontSize: '0.75rem', fontWeight: 600, color: sentimentColor }}>
-            {aiSummary.sentiment}
-          </p>
-        </div>
-        <div
-          style={{
-            height: '4px',
-            borderRadius: '2px',
-            background: 'rgba(255,255,255,0.06)',
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            style={{
-              height: '100%',
-              width: `${aiSummary.sentimentScore}%`,
-              background: `linear-gradient(90deg, ${sentimentColor}, rgba(0,229,255,0.7))`,
-              borderRadius: '2px',
-              transition: 'width 1s ease',
-            }}
-          />
-        </div>
-      </div>
-
-      <div style={{ marginBottom: '1rem' }}>
-        <p
-          style={{
-            fontSize: '0.72rem',
-            letterSpacing: '0.08em',
-            color: 'rgba(255,255,255,0.4)',
-            textTransform: 'uppercase',
-            marginBottom: '8px',
-          }}
-        >
-          The Highlights
-        </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-          {aiSummary.pros.map((pro, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-              <span
-                style={{
-                  width: '6px',
-                  height: '6px',
-                  borderRadius: '50%',
-                  background: '#D67BFF',
-                  marginTop: '6px',
-                  flexShrink: 0,
-                }}
-              />
-              <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.4 }}>
-                {pro}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <p
-          style={{
-            fontSize: '0.72rem',
-            letterSpacing: '0.08em',
-            color: 'rgba(255,255,255,0.4)',
-            textTransform: 'uppercase',
-            marginBottom: '8px',
-          }}
-        >
-          Critical Flaws
-        </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-          {aiSummary.cons.map((con, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-              <span
-                style={{
-                  width: '6px',
-                  height: '6px',
-                  borderRadius: '50%',
-                  background: '#FF6B6B',
-                  marginTop: '6px',
-                  flexShrink: 0,
-                }}
-              />
-              <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.4 }}>
-                {con}
-              </p>
-            </div>
-          ))}
-        </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+        {aiSummary.pros.map((pro, i) => (
+          <span key={`p${i}`} style={{ background: '#EDFDF2', border: '1px solid #007600', color: '#007600', padding: '4px 10px', borderRadius: '16px', fontSize: '13px', fontWeight: 'bold' }}>
+            ✓ {pro}
+          </span>
+        ))}
+        {aiSummary.cons.map((con, i) => (
+          <span key={`c${i}`} style={{ background: '#FEF2F2', border: '1px solid #B12704', color: '#B12704', padding: '4px 10px', borderRadius: '16px', fontSize: '13px', fontWeight: 'bold' }}>
+            {con}
+          </span>
+        ))}
       </div>
     </div>
   )

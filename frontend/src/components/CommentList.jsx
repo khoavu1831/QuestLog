@@ -1,93 +1,57 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import CommentItem from './CommentItem'
 
 export default function CommentList({ reviews, gameId }) {
-  const [sortMode, setSortMode] = useState('helpful')
+  const [filterMode, setFilterMode] = useState('all') // all, ai_helpful
 
-  const sorted = [...reviews].sort((a, b) => {
-    if (sortMode === 'helpful') return b.helpful - a.helpful
-    return new Date(b.date) - new Date(a.date)
-  })
+  const filteredAndSorted = useMemo(() => {
+    let result = [...reviews]
+    
+    if (filterMode === 'recent') {
+      // Sort by newest date
+      result.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0))
+    } else {
+      // Default: Top reviews (sort by helpfulness)
+      result.sort((a, b) => b.helpful - a.helpful)
+    }
+
+    // Filter by AI Helpful prediction
+    if (filterMode === 'ai_helpful') {
+      result = result.filter(r => r.aiLabel === 'HELPFUL')
+    }
+
+    return result
+  }, [reviews, filterMode])
 
   return (
-    <div style={{ marginTop: '2rem' }}>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '1.25rem',
-        }}
-      >
-        <h2
-          style={{
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontWeight: 700,
-            fontSize: '1.3rem',
-            color: '#fff',
-          }}
-        >
-          Community Transmissions
-        </h2>
-
-        <div style={{ display: 'flex', gap: '4px' }}>
-          <SortButton
-            active={sortMode === 'helpful'}
-            onClick={() => setSortMode('helpful')}
+    <div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
+        <h3 style={{ fontSize: '18px', fontWeight: 'bold' }}>Top reviews from the United States</h3>
+        
+        {/* Amazon style filter dropdown */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <span style={{ fontSize: '13px', color: '#565959' }}>Sort by:</span>
+          <select 
+            style={{ background: '#f0f2f2', border: '1px solid #d5d9d9', borderRadius: '8px', padding: '5px', fontSize: '13px', outline: 'none', cursor: 'pointer', boxShadow: '0 2px 5px rgba(15,17,17,.15)' }}
+            value={filterMode}
+            onChange={(e) => setFilterMode(e.target.value)}
           >
-            Most Helpful
-          </SortButton>
-          <SortButton
-            active={sortMode === 'newest'}
-            onClick={() => setSortMode('newest')}
-          >
-            Newest
-          </SortButton>
+            <option value="all">Top reviews</option>
+            <option value="recent">Most recent</option>
+            <option value="ai_helpful">Top AI Helpful Reviews</option>
+          </select>
         </div>
       </div>
 
-      {sorted.length === 0 ? (
-        <div
-          style={{
-            textAlign: 'center',
-            padding: '3rem',
-            color: 'rgba(255,255,255,0.3)',
-            fontSize: '0.875rem',
-          }}
-        >
-          No transmissions yet. Be the first to log your experience.
+      {filteredAndSorted.length === 0 ? (
+        <div style={{ padding: '20px 0', color: '#565959', fontSize: '14px' }}>
+          No reviews matched your filters.
         </div>
       ) : (
-        sorted.map(review => (
+        filteredAndSorted.map(review => (
           <CommentItem key={review.id} review={review} gameId={gameId} />
         ))
       )}
     </div>
-  )
-}
-
-function SortButton({ active, onClick, children }) {
-  return (
-    <button
-      onClick={onClick}
-      style={{
-        padding: '5px 12px',
-        fontSize: '0.72rem',
-        fontWeight: 600,
-        letterSpacing: '0.06em',
-        textTransform: 'uppercase',
-        borderRadius: '6px',
-        border: 'none',
-        background: active ? 'rgba(214,123,255,0.15)' : 'transparent',
-        color: active ? '#D67BFF' : 'rgba(255,255,255,0.4)',
-        borderBottom: active ? '1px solid rgba(214,123,255,0.5)' : '1px solid transparent',
-        transition: 'all 0.2s',
-        cursor: 'pointer',
-      }}
-      onMouseEnter={e => { if (!active) e.currentTarget.style.color = 'rgba(255,255,255,0.7)' }}
-      onMouseLeave={e => { if (!active) e.currentTarget.style.color = 'rgba(255,255,255,0.4)' }}
-    >
-      {children}
-    </button>
   )
 }
